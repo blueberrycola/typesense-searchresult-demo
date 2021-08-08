@@ -72,8 +72,8 @@ function multiSearch() {
     WIP, NOT WORKING CORRECTLY: Faceted searches are a way to browse by category. This makes postType a great example.
     A facet can be defined in an attribute by setting it to true. SEE LINE 22 ON createSchema.js
     
-    It works better now but it filters from highest rating as default so the relevant facets are at the bottom of the search result
-    
+    It works better now but since it filters by default in schema from highest rating as default so the relevant facets are at the bottom of the search result
+
 */
 function facetSearch() {
     let searchParam = {
@@ -96,6 +96,9 @@ function facetSearch() {
 }
 
 //Main
-//singleSearch();
-//multiSearch();
+singleSearch();
+console.log("/*****************END OF SINGLE SEARCH*****************\\")
+multiSearch();
+console.log("/*****************END OF MULTI SEARCH*****************\\")
 facetSearch();
+console.log("/*****************END OF FACET SEARCH*****************\\")

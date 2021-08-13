@@ -1,55 +1,58 @@
 const Typesense = require('typesense');
 
-//connect to typesense
+//connect to typesense search api
 let client = new Typesense.Client({
     'nodes': [{
       'host': '20fy6ohlsb4pz7mdp-1.a1.typesense.net', // For Typesense Cloud use xxx.a1.typesense.net
       'port': '443',      // For Typesense Cloud use 443
       'protocol': 'https'   // For Typesense Cloud use https
     }],
-    'apiKey': 'NepBsc6acI7FLq84Ne4kbiToC317LvYe',
+    'apiKey': 'NepBsc6acI7FLq84Ne4kbiToC317LvYe', //SEARCH API KEY
     'connectionTimeoutSeconds': 2
 });
 
 
 
-
+/* Searches for a single query */
 function singleSearch() {
     //Ask for a search for one query and return results into console.log()
     let searchParameters = {
-        'q'         : 'Data Science',
-        'query_by'  : 'postType',
-        'sort_by'   : ''
+        'q'         : 'Data Science', //query parameter
+        'query_by'  : 'postType',   //Specifies what attribute to query
+        'sort_by'   : ''            //if left blank it does default sort_by defined in schema
+                                    //LINE 40 IN createSchema.js -> 'default_sorting_field': 'rating'
     };
-
+    //Every result in typesense returns metadata and hits. Hits are what is queried from request
     client.collections('posts')
         .documents()
         .search(searchParameters)
         .then(function (searchResults) {
             console.log("RAW DATA:")
             console.log(searchResults);
-            console.log("HITS:") //Somehow mathematics are returned as the last two results im unsure why that is
+            console.log("HITS:")
             console.log(searchResults['hits']); //Returned result
     });
 }
-
+/*
+    If more than one query needs to be done sequentially it can be done this way
+*/
 function multiSearch() {
 
     //Ask searching for multiple queries by creating an array of searchParams
     let searchParams = {
         "queries": [
             {
-                'q'         : 'That is just the luck of the Draw',
-                'query_by'  : 'title',
+                'q'         : 'Java',
+                'query_by'  : 'tags',
                 'sort_by'   : ''
             },
             {
-                'q'         : 'Melissa Obama',
-                'query_by'  : 'author',
+                'q'         : 'C#',
+                'query_by'  : 'tags',
                 'sort_by'   : ''
             },
             {
-                'q'         : 'Video Game Development',
+                'q'         : 'Computer Science',
                 'query_by'  : 'postType',
                 'sort_by'   : ''
             }
@@ -95,10 +98,13 @@ function facetSearch() {
 
 }
 
-//Main
+//Main: 
+
+/*
 singleSearch();
 console.log("/*****************END OF SINGLE SEARCH*****************\\")
 multiSearch();
 console.log("/*****************END OF MULTI SEARCH*****************\\")
 facetSearch();
 console.log("/*****************END OF FACET SEARCH*****************\\")
+*/

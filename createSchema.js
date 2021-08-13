@@ -8,7 +8,7 @@ let client = new Typesense.Client({
       'port': '443',      // For Typesense Cloud use 443
       'protocol': 'https'   // For Typesense Cloud use https
     }],
-    'apiKey': 'K9hiqoAZFGOMU9Oc7vPTTJi6ExwnVU5b',
+    'apiKey': 'K9hiqoAZFGOMU9Oc7vPTTJi6ExwnVU5b', //ADMIN KEY
     'connectionTimeoutSeconds': 2
 });
 /*

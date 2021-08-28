@@ -1,5 +1,7 @@
 These scripts all run on node js by simply typing
 
+API KEY IS DEACTIVATED AND Out of Service!
+
 node ./file.js
 
 The ordering of creating your own search demo schema is as follows.
